@@ -8,11 +8,11 @@ from scipy import ndimage
 import time
 import os
 import sys
-from io.data_loader import *
+from data_io.data_loader import *
 from util.train_test_func import *
-from io.pre_process import save_array_as_nifty_volume
 from util.parse_config import parse_config
-from layer.loss import LossFunction
+from net.MSNet import MSNet
+from niftynet.layer.loss_segmentation import LossFunction
 
 import pickle
 class NetFactory(object):

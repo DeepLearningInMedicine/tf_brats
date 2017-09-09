@@ -26,6 +26,7 @@ net_type = MSNet
 net_name = MSNet_WT32
 base_feature_number = [32, 32, 32, 32]
 acti_func = prelu
+downsample_twice = True
 data_shape = [19, 144, 144]
 label_shape = [11, 144, 144]
 # equal to length of modality_postfix
