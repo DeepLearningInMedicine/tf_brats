@@ -93,7 +93,7 @@ def run(stage, config_file):
             tempx = train_pair['images']
             tempw = train_pair['weights']
             tempy = train_pair['labels']
-            opt_step.run(session = sess, feed_dict={x:tempx, w: tempw, y:tempy, alpha: alpha_value})
+            opt_step.run(session = sess, feed_dict={x:tempx, w: tempw, y:tempy})
               
             if(n%config_train['test_iteration'] == 0):
                 batch_dice_list = []
