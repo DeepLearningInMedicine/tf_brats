@@ -6,7 +6,7 @@ label_postfix = Label
 file_post_fix = nii.gz
 # stores prefix of volumes, e.g. HGG/HGG1_
 # if empty, load all the images in data_root
-data_names = guotai_brats/config/file_names/train_names_all.txt
+data_names = 
 # only data_num images loaded, all images if data_num is None
 data_num = 
 batch_size = 5
@@ -23,8 +23,8 @@ roi_patch_margin = 5
 keep_roi_outside = False
 
 [network]
-net_type = MSNetEN
-net_name = MSNetEN_EN32
+net_type = MSNet
+net_name = MSNet_EN32
 base_feature_number = [32, 32, 32, 32] 
 acti_func = prelu
 downsample_twice = False

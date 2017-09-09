@@ -7,7 +7,7 @@ label_postfix = Label
 file_post_fix = nii.gz
 # stores prefix of volumes, e.g. HGG/HGG1_
 # if empty, load all the images in data_root
-data_names = guotai_brats/config/file_names/train_names_all.txt 
+data_names =  
 # only data_num images loaded, all images if data_num is None
 data_num = 
 batch_size = 5
