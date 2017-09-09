@@ -1,12 +1,12 @@
 [data]
-data_root = [/home/guotwang/data/Brats17TrainingData_crop_renamed]
-#data_root = /home/wenqili/BRATS/train
-modality_postfix = [Flair,T1, T1c, T2]
+#data_root = [/home/guotwang/data/Brats17TrainingData_crop_renamed]
+data_root = [/home/wenqili/BRATS/train]
+modality_postfix = [Flair, T1, T1c, T2]
 label_postfix = Label
 file_post_fix = nii.gz
 # stores prefix of volumes, e.g. HGG/HGG1_
 # if empty, load all the images in data_root
-data_names = guotai_brats/config/file_names/train_names_all.txt
+data_names = 
 # only data_num images loaded, all images if data_num is None
 data_num = 
 batch_size = 5
@@ -23,10 +23,11 @@ roi_patch_margin = 5
 keep_roi_outside = False
 
 [network]
-net_type = MSNetEN
-net_name = MSNetEN_EN32sg
+net_type = MSNet
+net_name = MSNet_EN32
 base_feature_number = [32, 32, 32, 32] 
 acti_func = prelu
+downsample_twice = False
 data_shape = [19, 64, 64]
 label_shape = [11, 64, 64]
 # equal to length of modality_postfix
@@ -34,8 +35,8 @@ data_channel = 4
 class_num = 2
 
 [training]
-learning_rate = 2e-3
-decay = 1e-7
+learning_rate = 1e-3
+decay = 1e-9
 random_seed = 1
 maximal_iteration = 20000
 start_iteration = 0
@@ -43,7 +44,7 @@ test_iteration = 100
 test_step = 10
 snapshot_iteration = 5000
 model_pre_trained = 
-model_save_prefix = guotai_brats/models/msneten_en32sg
+model_save_prefix = /home/guotwang/tf_project/tf_brats/model/msnet_en32sg
 
 [testing]
 test_slice_direction = all
