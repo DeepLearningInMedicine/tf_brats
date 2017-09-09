@@ -1,6 +1,6 @@
 [data]
 #data_root = [/home/wenqili/BRATS/Brats17TrainingData_crop_renamed]
-data_root = /home/wenqili/BRATS/train
+data_root = [/home/wenqili/BRATS/train]
 modality_postfix = [Flair,T1, T1c, T2]
 label_postfix = Label
 file_post_fix = nii.gz
