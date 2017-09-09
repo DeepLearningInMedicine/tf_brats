@@ -201,6 +201,7 @@ class DataLoader():
         P = []
         data_num = self.data_num if (self.data_num) else len(self.patient_names)
         for i in range(data_num):
+            print(self.patient_names[i])
             volume_list = []
             for mod_idx in range(len(self.modality_postfix)):
                 volume_name_short = self.patient_names[i] + '_' + self.modality_postfix[mod_idx] + '.' + self.file_postfix
