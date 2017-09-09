@@ -1,6 +1,6 @@
 [data]
-data_root = [/home/guotwang/data/Brats17TrainingData_crop_renamed]
-#data_root = /home/wenqili/BRATS/train
+#data_root = [/home/guotwang/data/Brats17TrainingData_crop_renamed]
+data_root = [/home/wenqili/BRATS/train]
 modality_postfix = [Flair, T1, T1c, T2]
 label_postfix = Label
 file_post_fix = nii.gz
@@ -27,6 +27,7 @@ net_type = MSNetEN
 net_name = MSNetEN_EN32
 base_feature_number = [32, 32, 32, 32] 
 acti_func = prelu
+downsample_twice = False
 data_shape = [19, 64, 64]
 label_shape = [11, 64, 64]
 # equal to length of modality_postfix
@@ -35,7 +36,7 @@ class_num = 2
 
 [training]
 learning_rate = 1e-3
-decay = 1e-7
+decay = 1e-9
 random_seed = 1
 maximal_iteration = 20000
 start_iteration = 0
@@ -43,7 +44,7 @@ test_iteration = 100
 test_step = 10
 snapshot_iteration = 5000
 model_pre_trained = 
-model_save_prefix = guotai_brats/models/msneten_en32
+model_save_prefix = /home/guotwang/tf_project/tf_brats/model/msnet_en32
 
 [testing]
 test_slice_direction = all
