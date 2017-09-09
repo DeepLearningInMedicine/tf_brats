@@ -103,7 +103,7 @@ def run(stage, config_file):
                     tempw = train_pair['weights']
                     tempy = train_pair['labels']
                     tempp = train_pair['probs']
-                    dice = loss.eval(feed_dict ={x:tempx, w:tempw, y:tempy , alpha: alpha_value})
+                    dice = loss.eval(feed_dict ={x:tempx, w:tempw, y:tempy})
                     batch_dice_list.append(dice)
                 batch_dice = np.asarray(batch_dice_list, np.float32).mean()
                 t = time.strftime('%X %x %Z')
