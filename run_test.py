@@ -7,7 +7,6 @@ import time
 import os
 import sys
 from data_io.data_loader import *
-from data_io.pre_process import save_array_as_nifty_volume
 from run_train import NetFactory
 from util.train_test_func import test_one_image_three_nets, test_one_image_three_nets_adaptive_shape
 from util.parse_config import parse_config
