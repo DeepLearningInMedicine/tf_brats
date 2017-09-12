@@ -328,9 +328,14 @@ def run(config_file):
         for i in range(len(net1sg_vars)):
             copy_value = tf.assign(net1sg_vars[i], net1ax_vars[i])
             copy_value.eval()
+        
+        saver1ax.restore(sess, config_net1cr['model_file'])
+        net1cr_vars = [x for x in all_vars if x.name[0:len(net_name1cr)+1]==net_name1cr + '/']
+        for i in range(len(net1cr_vars)):
+            copy_value = tf.assign(net1cr_vars[i], net1ax_vars[i])
+            copy_value.eval()
+
         saver1ax.restore(sess, config_net1ax['model_file'])
-
-
 #        net1ax_vars = [x for x in all_vars if x.name[0:len(net_name1ax) + 1]==net_name1ax + '/']
 #        saver1ax = tf.train.Saver(net1ax_vars)
 #        print('net1ax', len(net1ax_vars))
@@ -339,10 +344,10 @@ def run(config_file):
 #        print('net1sg', len(net1sg_vars))
 #        saver1sg = tf.train.Saver(net1sg_vars)
 #        saver1sg.restore(sess, config_net1sg['model_file'])     
-        net1cr_vars = [x for x in all_vars if x.name[0:len(net_name1cr) + 1]==net_name1cr + '/']
-        saver1cr = tf.train.Saver(net1cr_vars)
-        print('net1cr', len(net1cr_vars))
-        saver1cr.restore(sess, config_net1cr['model_file'])
+#        net1cr_vars = [x for x in all_vars if x.name[0:len(net_name1cr) + 1]==net_name1cr + '/']
+#        saver1cr = tf.train.Saver(net1cr_vars)
+#        print('net1cr', len(net1cr_vars))
+#        saver1cr.restore(sess, config_net1cr['model_file'])
 
     if(config_net2):
         net2_vars = [x for x in all_vars if x.name[0:len(net_name2) + 1]==net_name2 + '/']
