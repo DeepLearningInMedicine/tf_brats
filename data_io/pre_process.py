@@ -47,7 +47,7 @@ def get_all_patients_dir(data_root):
         patient_list = [sub_source + x for x in patient_list if 'Brats' in x]
         all_patients_list.extend(patient_list)
         print('patients for ', sub_source,len(patient_list))
-    print  "total patients ", len(all_patients_list)
+    print("total patients ", len(all_patients_list))
     return all_patients_list
 
 def get_roi_range_in_one_dimention(x0, x1, L):
@@ -64,16 +64,16 @@ def get_roi_from_volumes(volumes):
     mind = d_idxes.min(); maxd = d_idxes.max()
     minh = h_idxes.min(); maxh = h_idxes.max()
     minw = w_idxes.min(); maxw = w_idxes.max()
-    print mind, maxd, minh, maxh, minw, maxw
+    print(mind, maxd, minh, maxh, minw, maxw)
     [mind, maxd] = get_roi_range_in_one_dimention(mind, maxd, outD)
     [minh, maxh] = get_roi_range_in_one_dimention(minh, maxh, outH)
     [minw, maxw] = get_roi_range_in_one_dimention(minw, maxw, outW)
-    print mind, maxd, minh, maxh, minw, maxw
+    print(mind, maxd, minh, maxh, minw, maxw)
     roi_volumes = []
     for volume in volumes:
         roi_volume = volume[np.ix_(range(mind, maxd), range(minh, maxh), range(minw, maxw))]
         roi_volumes.append(roi_volume)
-        print roi_volume.shape
+        print(roi_volume.shape)
     return roi_volumes, [mind, maxd, minh, maxh, minw, maxw]
 
 def get_training_set_statistics(): 
@@ -103,7 +103,7 @@ def get_training_set_statistics():
             roi = get_roi_size(volumes[i])
             roi_size.append(roi)
     roi_size = np.asarray(roi_size)
-    print roi_size.mean(axis = 0), roi_size.std(axis = 0)
+    print(roi_size.mean(axis = 0), roi_size.std(axis = 0))
         
 def extract_roi_for_training_set():
     source_root = '/Users/guotaiwang/Documents/data/BRATS2017/BRATS17TrainingData/'
@@ -116,7 +116,7 @@ def extract_roi_for_training_set():
         roi_volumes, roi = get_roi_from_volumes(volumes)
         for i in range(len(roi_volumes)):
             save_patient_dir = patient_dir.replace("BRATS17TrainingData", target_root)
-            print save_patient_dir
+            print(save_patient_dir)
             if(not os.path.isdir(save_patient_dir)):
                 os.mkdir(save_patient_dir)
             save_name = os.path.join(save_patient_dir, modality_names[i])
@@ -142,8 +142,8 @@ def split_data(split_name, seed):
             test_list.append(patient) 
         else:
             train_list.append(patient)
-    print "train_list", len(train_list)
-    print "test_list ", len(test_list)
+    print("train_list", len(train_list))
+    print("test_list ", len(test_list))
     train_file = open(split_name + '/train.txt', 'w')
     for patient in train_list:
         train_file.write("%s\n" % patient)
