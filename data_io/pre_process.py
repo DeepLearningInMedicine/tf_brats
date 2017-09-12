@@ -2,7 +2,7 @@ import os
 import nibabel
 import numpy as np
 import random
-from statsmodels.tsa.tests.test_tsa_tools import test_pacf_ols
+
 
 def get_roi_size(inputVolume):
     [d_idxes, h_idxes, w_idxes] = np.nonzero(inputVolume)
