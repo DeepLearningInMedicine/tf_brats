@@ -46,7 +46,7 @@ def get_all_patients_dir(data_root):
         patient_list = os.listdir(sub_source)
         patient_list = [sub_source + x for x in patient_list if 'Brats' in x]
         all_patients_list.extend(patient_list)
-        print 'patients for ', sub_source,len(patient_list)
+        print('patients for ', sub_source,len(patient_list))
     print  "total patients ", len(all_patients_list)
     return all_patients_list
 
