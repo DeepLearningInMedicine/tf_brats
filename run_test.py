@@ -415,9 +415,9 @@ def run(config_file):
 
         saver3ax.restore(sess, config_net3cr['model_file'])
         net3cr_vars = [x for x in all_vars if x.name[0:len(net_name3cr)+1]==net_name3cr + '/']
-            for i in range(len(net3cr_vars)):
-                copy_value = tf.assign(net3cr_vars[i], net3ax_vars[i])
-                copy_value.eval()
+        for i in range(len(net3cr_vars)):
+            copy_value = tf.assign(net3cr_vars[i], net3ax_vars[i])
+            copy_value.eval()
         saver3cr = tf.train.Saver(net3cr_vars)
             saver3cr.save(sess, "model/msnet_tc32en_20000cp.ckpt")
             print('net3cr saved')
