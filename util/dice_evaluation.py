@@ -2,7 +2,8 @@
 from __future__ import absolute_import, print_function
 import os
 import sys
-from data_io.data_loader import load_nifty_volume_as_array
+sys.path.append('data_io')
+from data_loader import load_nifty_volume_as_array
 import numpy as np
 from scipy import ndimage
 
