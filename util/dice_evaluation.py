@@ -60,12 +60,12 @@ def dice_of_brats_data_set(s_folder, g_folder, patient_names_file, type_idx):
     return dice_all_data
     
 if __name__ == '__main__':
-   # s_folder = 'guotai_brats/result2/full'
-   # g_folder = '/home/wenqili/BRATS/test'
-   # patient_names_file = 'guotai_brats/config/test_names.txt'
-    s_folder = '/Users/guotaiwang/Documents/workspace/tf_project/NiftyNet/guotai_brats/deepigeos/result_crf_post'
-    g_folder = '/Users/guotaiwang/Documents/data/BRATS/BRATS2015_Train_croprename'
-    patient_names_file = '/Users/guotaiwang/Documents/data/BRATS/BRATS2015_Train_croprename/test_names2.txt'
+    s_folder = 'results/valid0_1'
+    g_folder = '/home/wenqili/BRATS/test'
+    patient_names_file = 'config/test_names.txt'
+#s_folder = '/Users/guotaiwang/Documents/workspace/tf_project/NiftyNet/guotai_brats/deepigeos/result_crf_post'
+#    g_folder = '/Users/guotaiwang/Documents/data/BRATS/BRATS2015_Train_croprename'
+#    patient_names_file = '/Users/guotaiwang/Documents/data/BRATS/BRATS2015_Train_croprename/test_names2.txt'
     #patient_names_file = '/Users/guotaiwang/Documents/workspace/tf_project/NiftyNet/guotai_brats/deepigeos/temp_names.txt'
     test_types = ['whole','core', 'all']
     type_idx = 0
