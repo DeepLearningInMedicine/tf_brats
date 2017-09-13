@@ -35,7 +35,7 @@ label_shape = [11, 160, 180]
 # equal to length of modality_postfix
 data_channel = 4
 class_num = 2
-model_file = model/msnet_wt32sg_20000.ckpt
+model_file = model/msnet_wt32sg_20000cp.ckpt
 
 [network1cr]
 net_type = MSNet
@@ -48,7 +48,7 @@ label_shape = [11, 160, 160]
 # equal to length of modality_postfix
 data_channel = 4
 class_num = 2
-model_file = model/msnet_wt32cr_20000.ckpt
+model_file = model/msnet_wt32cr_20000cp.ckpt
 
 [network2ax]
 net_type = MSNet
@@ -74,7 +74,7 @@ label_shape = [11,120, 120]
 # equal to length of modality_postfix
 data_channel = 4
 class_num = 2
-model_file = model/msnet_tc32sg_20000.ckpt
+model_file = model/msnet_tc32sg_20000cp.ckpt
 
 [network2cr]
 net_type = MSNet
@@ -87,7 +87,7 @@ label_shape = [11, 120, 120]
 # equal to length of modality_postfix
 data_channel = 4
 class_num = 2
-model_file = model/msnet_tc32cr_20000.ckpt
+model_file = model/msnet_tc32cr_20000cp.ckpt
 
 [network3ax]
 net_type = MSNet
@@ -95,8 +95,8 @@ net_name = MSNet_EN32
 base_feature_number = [32, 32, 32, 32]
 acti_func = prelu
 downsample_twice = False
-data_shape = [19, 80, 80]
-label_shape = [11,80, 80]
+data_shape = [19, 96, 96]
+label_shape = [11,96, 96]
 # equal to length of modality_postfix
 data_channel = 4
 class_num = 2
@@ -108,12 +108,12 @@ net_name = MSNet_EN32sg
 base_feature_number = [32, 32, 32, 32]
 acti_func = prelu
 downsample_twice = False
-data_shape = [19, 80, 80]
-label_shape = [11, 80, 80]
+data_shape = [19, 96, 96]
+label_shape = [11, 96, 96]
 # equal to length of modality_postfix
 data_channel = 4
 class_num = 2
-model_file = model/msnet_en32sg_20000.ckpt
+model_file = model/msnet_en32sg_20000cp.ckpt
 
 [network3cr]
 net_type = MSNet
@@ -121,12 +121,12 @@ net_name = MSNet_EN32cr
 base_feature_number = [32, 32, 32, 32]
 acti_func = prelu
 downsample_twice = False
-data_shape = [19, 80, 80]
-label_shape = [11, 80, 80]
+data_shape = [19, 96, 96]
+label_shape = [11, 96, 96]
 # equal to length of modality_postfix
 data_channel = 4
 class_num = 2
-model_file = model/msnet_en32cr_20000.ckpt
+model_file = model/msnet_en32cr_20000cp.ckpt
 
 [testing]
 test_slice_direction = all
