@@ -2,8 +2,7 @@
 from __future__ import absolute_import, print_function
 import os
 import sys
-sys.path.append('guotai_brats/data_process')
-from data_loader import load_nifty_volume_as_array
+from data_io.data_loader import load_nifty_volume_as_array
 import numpy as np
 from scipy import ndimage
 
