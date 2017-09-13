@@ -401,37 +401,37 @@ def run(config_file):
         saver3 = tf.train.Saver(net3_vars)
         saver3.restore(sess, config_net3['model_file'])
     else:
-#        net3ax_vars = [x for x in all_vars if x.name[0:len(net_name3ax)+1]==net_name3ax + '/']
-#        saver3ax = tf.train.Saver(net3ax_vars)
-#        saver3ax.restore(sess, config_net3sg['model_file'])
-#        net3sg_vars = [x for x in all_vars if x.name[0:len(net_name3sg)+1]==net_name3sg + '/']
-#        for i in range(len(net3sg_vars)):
-#            copy_value = tf.assign(net3sg_vars[i], net3ax_vars[i])
-#            copy_value.eval()
-#        print('net3sg loaded')
-#        saver3sg = tf.train.Saver(net3sg_vars)
-#        saver3sg.save(sess, "model/msnet_tc32en_20000cp.ckpt")
-#        print('net3sg saved')
-#
-#        saver3ax.restore(sess, config_net3cr['model_file'])
-#        net3cr_vars = [x for x in all_vars if x.name[0:len(net_name3cr)+1]==net_name3cr + '/']
-#        for i in range(len(net3cr_vars)):
-#            copy_value = tf.assign(net3cr_vars[i], net3ax_vars[i])
-#            copy_value.eval()
-#        saver3cr = tf.train.Saver(net3cr_vars)
-#        saver3cr.save(sess, "model/msnet_tc32en_20000cp.ckpt")
-#        print('net3cr saved')
-#        
-#        saver3ax.restore(sess, config_net3ax['model_file'])
-        net3ax_vars = [x for x in all_vars if x.name[0:len(net_name3ax) + 1]==net_name3ax+ '/']
+        net3ax_vars = [x for x in all_vars if x.name[0:len(net_name3ax)+1]==net_name3ax + '/']
         saver3ax = tf.train.Saver(net3ax_vars)
-        saver3ax.restore(sess, config_net3ax['model_file'])
-        net3sg_vars = [x for x in all_vars if x.name[0:len(net_name3sg) + 1]==net_name3sg+ '/']
+        saver3ax.restore(sess, config_net3sg['model_file'])
+        net3sg_vars = [x for x in all_vars if x.name[0:len(net_name3sg)+1]==net_name3sg + '/']
+        for i in range(len(net3sg_vars)):
+            copy_value = tf.assign(net3sg_vars[i], net3ax_vars[i])
+            copy_value.eval()
+        print('net3sg loaded')
         saver3sg = tf.train.Saver(net3sg_vars)
-        saver3sg.restore(sess, config_net3sg['model_file'])     
-        net3cr_vars = [x for x in all_vars if x.name[0:len(net_name3cr) + 1]==net_name3cr+ '/']
+        saver3sg.save(sess, "model/msnet_en32sg_20000cp.ckpt")
+        print('net3sg saved')
+
+        saver3ax.restore(sess, config_net3cr['model_file'])
+        net3cr_vars = [x for x in all_vars if x.name[0:len(net_name3cr)+1]==net_name3cr + '/']
+        for i in range(len(net3cr_vars)):
+            copy_value = tf.assign(net3cr_vars[i], net3ax_vars[i])
+            copy_value.eval()
         saver3cr = tf.train.Saver(net3cr_vars)
-        saver3cr.restore(sess, config_net3cr['model_file'])     
+        saver3cr.save(sess, "model/msnet_en32cr_20000cp.ckpt")
+        print('net3cr saved')
+        
+        saver3ax.restore(sess, config_net3ax['model_file'])
+#        net3ax_vars = [x for x in all_vars if x.name[0:len(net_name3ax) + 1]==net_name3ax+ '/']
+#        saver3ax = tf.train.Saver(net3ax_vars)
+#        saver3ax.restore(sess, config_net3ax['model_file'])
+#        net3sg_vars = [x for x in all_vars if x.name[0:len(net_name3sg) + 1]==net_name3sg+ '/']
+#        saver3sg = tf.train.Saver(net3sg_vars)
+#        saver3sg.restore(sess, config_net3sg['model_file'])     
+#        net3cr_vars = [x for x in all_vars if x.name[0:len(net_name3cr) + 1]==net_name3cr+ '/']
+#        saver3cr = tf.train.Saver(net3cr_vars)
+#        saver3cr.restore(sess, config_net3cr['model_file'])     
 
     loader = DataLoader()
     loader.set_params(config_data)
