@@ -75,9 +75,10 @@ if __name__ == '__main__':
     print(dice.shape)
     dice_mean = dice.mean(axis = 0)
     dice_std  = dice.std(axis = 0)
-    np.savetxt(s_folder + '/dice_all.txt', dice)
-    np.savetxt(s_folder + '/dice_mean.txt', dice_mean)
-    np.savetxt(s_folder + '/dice_std.txt', dice_std)
+    test_type = test_types[type_idx]
+    np.savetxt(s_folder + '/dice_{0:}.txt'.format(test_type), dice)
+    np.savetxt(s_folder + '/dice_{0:}_mean.txt'.format(test_type), dice_mean)
+    np.savetxt(s_folder + '/dice_{0:}_std.txt'.format(test_type), dice_std)
     print('dice mean ', dice_mean)
     print('dice std  ', dice_std)
  
