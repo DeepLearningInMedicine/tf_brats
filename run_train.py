@@ -20,6 +20,8 @@ class NetFactory(object):
     def create(name):
         if name == 'MSNet':
             return MSNet
+        if name == 'HighRes3DNet':
+            return HighRes3DNet
         print('unsupported network:', name)
         exit()
         
@@ -62,7 +64,8 @@ def run(stage, config_file):
         b_regularizer = b_regularizer,
         name = net_name)
 
-    net.set_params(config_net)
+    if(net_type == 'MSNet'):
+        net.set_params(config_net)
     
     loss_func = LossFunction(n_class=class_num)
     predicty = net(x, is_training = stage == 'train')
