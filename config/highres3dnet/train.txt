@@ -10,8 +10,8 @@ data_names =
 # only data_num images loaded, all images if data_num is None
 data_num = 20
 batch_size = 1
-data_shape = [96, 96, 96]
-label_shape = [96, 96, 96]
+data_shape = [80, 80, 80]
+label_shape = [80, 80, 80]
 label_convert_source = [0, 1, 2, 4]
 label_convert_target = [0, 1, 2, 3]
 batch_sample_model = [valid, valid, valid]
@@ -23,8 +23,8 @@ train_with_roi_patch = False
 [network]
 net_type = HighRes3DNet
 net_name = HighRes3DNet
-data_shape = [96, 96, 96]
-label_shape = [96, 96, 96]
+data_shape = [80, 80, 80]
+label_shape = [80, 80, 80]
 data_channel = 4 
 class_num = 4
 
