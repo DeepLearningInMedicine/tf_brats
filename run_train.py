@@ -72,7 +72,7 @@ def run(stage, config_file):
         net.set_params(config_net)
     
     loss_func = LossFunction(n_class=class_num)
-    predicty = net(x, is_training = stage == 'train')
+    predicty = net(x, is_training = True)
     proby = tf.nn.softmax(predicty)
     loss = loss_func(predicty, y, weight_map = w)
     print('size of predicty:',predicty)
