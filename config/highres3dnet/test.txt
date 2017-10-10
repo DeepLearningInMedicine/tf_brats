@@ -22,6 +22,6 @@ model_file = /home/guotwang/tf_project/tf_brats/model/highres3dnet_5000.ckpt
 
 [testing]
 test_slice_direction = axial
-save_folder = results/highres3d/valid0_1
+save_folder = results/highres3dnet/valid0_1
 label_convert_source = [0, 1, 2, 3]
-label_convert_source = [0, 1, 2, 4]
+label_convert_target = [0, 1, 2, 4]
