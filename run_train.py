@@ -12,6 +12,7 @@ from data_io.data_loader import *
 from util.train_test_func import *
 from util.parse_config import parse_config
 from net.MSNet import MSNet
+from niftynet.network.unet import UNet3D
 from niftynet.network.highres3dnet import HighRes3DNet
 from niftynet.layer.loss_segmentation import LossFunction
 
@@ -23,6 +24,8 @@ class NetFactory(object):
             return MSNet
         if name == 'HighRes3DNet':
             return HighRes3DNet
+        if name == 'UNet3D':
+            return UNet3D
         print('unsupported network:', name)
         exit()
         
