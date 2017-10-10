@@ -14,8 +14,8 @@ data_num = 5
 [network]
 net_type = HighRes3DNet
 net_name = HighRes3DNet
-data_shape = [128, 128, 128]
-label_shape = [128,128, 128]
+data_shape = [80, 80, 80]
+label_shape = [80, 80, 80]
 data_channel = 4 
 class_num = 4
 
