@@ -145,12 +145,12 @@ def run(stage, config_file):
             temp_time = time.time() - t0
             test_time.append(temp_time)
             temp_label =  np.asarray(np.argmax(temp_prob, axis = 3), np.uint16)
-            temp_label[temp_weight==0] = 0
-            label_convert_source = config_test.get('label_convert_source', None)
-            label_convert_target = config_test.get('label_convert_target', None)
-            if(label_convert_source and label_convert_target):
-                assert(len(label_convert_source) == len(label_convert_target))
-                temp_label = convert_label(temp_label, label_convert_source, label_convert_target)
+            #temp_label[temp_weight==0] = 0
+            #label_convert_source = config_test.get('label_convert_source', None)
+            #label_convert_target = config_test.get('label_convert_target', None)
+            #if(label_convert_source and label_convert_target):
+            #    assert(len(label_convert_source) == len(label_convert_target))
+            #    temp_label = convert_label(temp_label, label_convert_source, label_convert_target)
             if(down_sample != 1.0):
                 temp_label = resize_3D_volume_to_given_shape(temp_label, test_weight.shape, order = 0)
             save_array_as_nifty_volume(temp_label, save_folder+"/{0:}.nii.gz".format(temp_name))
