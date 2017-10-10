@@ -10,8 +10,8 @@ data_names =
 # only data_num images loaded, all images if data_num is None
 data_num =  
 batch_size = 1
-data_shape =  [39, 144, 144]
-label_shape = [31, 144, 144]
+data_shape =  [47, 144, 144]
+label_shape = [39, 144, 144]
 label_convert_source = [0, 1, 2, 4]
 label_convert_target = [0, 1, 2, 3]
 batch_sample_model = [full, valid, valid]
@@ -27,8 +27,8 @@ net_name = MSNet32
 base_feature_number = [32, 32, 32, 32]
 acti_func = prelu
 downsample_twice = True
-data_shape = [39, 144, 144]
-label_shape = [31, 144, 144]
+data_shape = [47, 144, 144]
+label_shape = [39, 144, 144]
 # equal to length of modality_postfix
 data_channel = 4 
 class_num = 4
