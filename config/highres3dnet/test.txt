@@ -8,7 +8,7 @@ file_post_fix = nii.gz
 # if empty, load all the images in data_root
 data_names = 
 # only data_num images loaded, all images if data_num is None
-data_num = 
+data_num = 5
 
 
 [network]
