@@ -120,7 +120,7 @@ def run(stage, config_file):
             if((n+1)%config_train['snapshot_iteration']  == 0):
                 saver.save(sess, config_train['model_save_prefix']+"_{0:}.ckpt".format(n+1))
     else:
-#        saver.restore(sess, config_test['model_file'])
+        saver.restore(sess, config_test['model_file'])
         image_num = loader.get_total_image_number()
         test_slice_direction = config_test.get('test_slice_direction', 'all')
         save_folder = config_test['save_folder']
