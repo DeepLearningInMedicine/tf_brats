@@ -137,8 +137,11 @@ def run(stage, config_file):
                     temp_imgs.append(ndimage.interpolation.zoom(test_imgs[mod],1.0/down_sample, order = 1))
                 temp_weight = ndimage.interpolation.zoom(test_weight,1.0/down_sample, order = 1)
             t0 = time.time()
-            temp_prob = test_one_image_dynamic_shape(temp_imgs, data_shape[0], label_shape[0], data_channel, class_num,
-                                                         batch_size, test_slice_direction, sess, net)
+            if(net_type == 'HighRes3DNet' or net_type == 'UNet3D'):
+            temp_prob = volume_probability_prediction_3d_roi(temp_imgs, data_shape, label_shape, data_channel, class_num,batch_size, sess, proby, x)
+            else:
+                temp_prob = test_one_image_dynamic_shape(temp_imgs, data_shape[0], label_shape[0], data_channel, class_num,
+                                                             batch_size, test_slice_direction, sess, net)
             temp_time = time.time() - t0
             test_time.append(temp_time)
             temp_label =  np.asarray(np.argmax(temp_prob, axis = 3), np.uint16)
