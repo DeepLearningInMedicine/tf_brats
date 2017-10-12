@@ -10,9 +10,9 @@ file_post_fix = nii.gz
 data_names =  
 # only data_num images loaded, all images if data_num is None
 data_num = 
-batch_size = 5
-data_shape = [19, 96, 96]
-label_shape = [11, 96, 96]
+batch_size = 2
+data_shape = [49, 96, 96]
+label_shape = [41, 96, 96]
 label_convert_source = [0, 1, 2, 4]
 label_convert_target = [0, 1, 0, 1]
 batch_sample_model = [full, valid, valid]
@@ -29,15 +29,15 @@ net_name = MSNet_TC32
 base_feature_number = [32, 32, 32, 32]
 acti_func = prelu
 downsample_twice = True
-data_shape = [19, 96, 96]
-label_shape = [11, 96, 96]
+data_shape = [49, 96, 96]
+label_shape = [41, 96, 96]
 # equal to length of modality_postfix
 data_channel = 4 
 class_num = 2
 
 [training]
 learning_rate = 1e-3
-decay = 1e-9
+decay = 1e-7
 random_seed = 1
 maximal_iteration = 20000
 start_iteration = 0

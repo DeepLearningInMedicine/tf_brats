@@ -9,9 +9,9 @@ file_post_fix = nii.gz
 data_names = 
 # only data_num images loaded, all images if data_num is None
 data_num = 
-batch_size = 5
-data_shape = [19, 64, 64]
-label_shape = [11,64, 64]
+batch_size = 3
+data_shape = [39, 64, 64]
+label_shape = [31,64, 64]
 label_convert_source = [0, 1, 2, 4]
 label_convert_target = [0, 0, 0, 1]
 batch_sample_model = [full, valid, valid]
@@ -28,8 +28,8 @@ net_name = MSNet_EN32
 base_feature_number = [32, 32, 32, 32] 
 acti_func = prelu
 downsample_twice = False
-data_shape = [19, 64, 64]
-label_shape = [11, 64, 64]
+data_shape = [39, 64, 64]
+label_shape = [31, 64, 64]
 # equal to length of modality_postfix
 data_channel = 4 
 class_num = 2

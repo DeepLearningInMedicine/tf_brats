@@ -244,6 +244,15 @@ class DataLoader():
         '''
         sample a batch of image patches for segmentation. Only used for training
         '''
+        flag = False
+        while(flag == False):
+            batch = self.__get_one_batch()
+            labels = batch['labels']
+            if(labels.sum() > 0):
+                flag = True
+        return batch
+    
+    def __get_one_batch(self):
         batch_size = self.config['batch_size']
         data_shape = self.config['data_shape']
         label_shape = self.config['label_shape']
