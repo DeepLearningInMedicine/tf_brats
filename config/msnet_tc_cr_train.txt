@@ -7,7 +7,7 @@ label_postfix = Label
 file_post_fix = nii.gz
 # stores prefix of volumes, e.g. HGG/HGG1_
 # if empty, load all the images in data_root
-data_names = /home/guotwang/tf_project/tf_brats/train_names_all_lggx2.txt  
+data_names = /home/guotwang/tf_project/tf_brats/config/train_names_all_lggx2.txt  
 # only data_num images loaded, all images if data_num is None
 data_num = 
 batch_size = 2
