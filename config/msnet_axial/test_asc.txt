@@ -1,0 +1,36 @@
+[data]
+#data_root = [/home/guotwang/data/Brats17TrainingData_crop_renamed]
+data_root = [/home/wenqili/BRATS/test]
+modality_postfix = [Flair, T1, T1c, T2]
+label_postfix = Label
+file_post_fix = nii.gz
+# stores prefix of volumes, e.g. HGG/HGG1_
+# if empty, load all the images in data_root
+data_names = 
+# only data_num images loaded, all images if data_num is None
+data_num = 
+batch_size = 1
+
+
+[network]
+net_type = MSNet
+net_name = MSNet32
+base_feature_number = [32, 32, 32, 32]
+acti_func = prelu
+downsample_twice = True
+data_shape = [49, 160, 160]
+label_shape = [41, 160, 160]
+# equal to length of modality_postfix
+data_channel = 4 
+class_num = 4
+
+[training]
+learning_rate = 1e-3
+decay = 1e-9
+
+[testing]
+test_slice_direction = all
+model_file = /home/guotwang/tf_project/tf_brats/model/msnet32_20000.ckpt
+save_folder = results/msnet_axial/valid0_2
+label_convert_source = [0, 1, 2, 3]
+label_convert_target = [0, 1, 2, 4]
