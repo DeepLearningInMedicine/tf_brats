@@ -1,13 +1,13 @@
 [data]
-#data_root = [/home/wenqili/BRATS/Brats17TrainingData_crop_renamed]
-data_root = [/home/wenqili/BRATS/train]
+data_root = [/home/wenqili/BRATS/Brats17TrainingData_crop_renamed]
+#data_root = [/home/wenqili/BRATS/train]
 #data_root = /Users/guotaiwang/Documents/data/BRATS2017/Brats17TrainingData_crop_renamed
 modality_postfix = [Flair,T1, T1c, T2]
 label_postfix = Label
 file_post_fix = nii.gz
 # stores prefix of volumes, e.g. HGG/HGG1_
 # if empty, load all the images in data_root
-data_names =  
+data_names = /home/guotwang/tf_project/tf_brats/train_names_all_lggx2.txt  
 # only data_num images loaded, all images if data_num is None
 data_num = 
 batch_size = 2
@@ -25,7 +25,7 @@ roi_patch_margin = 5
 
 [network]
 net_type = MSNet
-net_name = MSNet_TC32
+net_name = MSNet_TC32cr
 base_feature_number = [32, 32, 32, 32]
 acti_func = prelu
 downsample_twice = True
@@ -37,7 +37,7 @@ class_num = 2
 
 [training]
 learning_rate = 1e-3
-decay = 1e-9
+decay = 1e-7
 random_seed = 1
 maximal_iteration = 20000
 start_iteration = 0
