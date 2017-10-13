@@ -130,4 +130,4 @@ model_file = model/msnet_en32cr_20000.ckpt
 
 [testing]
 test_slice_direction = all
-save_folder = results/valid0_1
+save_folder = results/valid0_4
