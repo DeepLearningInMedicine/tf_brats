@@ -363,28 +363,28 @@ def run(config_file):
         saver2 = tf.train.Saver(net2_vars)
         saver2.restore(sess, config_net2['model_file'])
     else:
-        net2ax_vars = [x for x in all_vars if x.name[0:len(net_name2ax)+1]==net_name2ax + '/']
-        saver2ax = tf.train.Saver(net2ax_vars)
-        saver2ax.restore(sess, config_net2sg['model_file'])
-        net2sg_vars = [x for x in all_vars if x.name[0:len(net_name2sg)+1]==net_name2sg + '/']
-        for i in range(len(net2sg_vars)):
-            copy_value = tf.assign(net2sg_vars[i], net2ax_vars[i])
-            copy_value.eval()
-        print('net2sg loaded')
-        saver2sg = tf.train.Saver(net2sg_vars)
-        saver2sg.save(sess, "model/msnet_tc32sg_15000cp.ckpt")
-        print('net2sg saved')
-
-        saver2ax.restore(sess, config_net2cr['model_file'])
-        net2cr_vars = [x for x in all_vars if x.name[0:len(net_name2cr)+1]==net_name2cr + '/']
-        for i in range(len(net2cr_vars)):
-            copy_value = tf.assign(net2cr_vars[i], net2ax_vars[i])
-            copy_value.eval()
-        saver2cr = tf.train.Saver(net2cr_vars)
-        saver2cr.save(sess, "model/msnet_tc32cr_10000cp.ckpt")
-        print('net2cr saved')
-        return
-        saver2ax.restore(sess, config_net2ax['model_file'])
+#        net2ax_vars = [x for x in all_vars if x.name[0:len(net_name2ax)+1]==net_name2ax + '/']
+#        saver2ax = tf.train.Saver(net2ax_vars)
+#        saver2ax.restore(sess, config_net2sg['model_file'])
+#        net2sg_vars = [x for x in all_vars if x.name[0:len(net_name2sg)+1]==net_name2sg + '/']
+#        for i in range(len(net2sg_vars)):
+#            copy_value = tf.assign(net2sg_vars[i], net2ax_vars[i])
+#            copy_value.eval()
+#        print('net2sg loaded')
+#        saver2sg = tf.train.Saver(net2sg_vars)
+#        saver2sg.save(sess, "model/msnet_tc32sg_15000cp.ckpt")
+#        print('net2sg saved')
+#
+#        saver2ax.restore(sess, config_net2cr['model_file'])
+#        net2cr_vars = [x for x in all_vars if x.name[0:len(net_name2cr)+1]==net_name2cr + '/']
+#        for i in range(len(net2cr_vars)):
+#            copy_value = tf.assign(net2cr_vars[i], net2ax_vars[i])
+#            copy_value.eval()
+#        saver2cr = tf.train.Saver(net2cr_vars)
+#        saver2cr.save(sess, "model/msnet_tc32cr_10000cp.ckpt")
+#        print('net2cr saved')
+#        return
+#        saver2ax.restore(sess, config_net2ax['model_file'])
 
         net2ax_vars = [x for x in all_vars if x.name[0:len(net_name2ax)+1]==net_name2ax + '/']
         saver2ax = tf.train.Saver(net2ax_vars)
