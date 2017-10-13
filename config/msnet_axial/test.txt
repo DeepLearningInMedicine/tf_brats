@@ -8,7 +8,7 @@ file_post_fix = nii.gz
 # if empty, load all the images in data_root
 data_names = 
 # only data_num images loaded, all images if data_num is None
-data_num = 5
+data_num = 
 batch_size = 1
 
 
@@ -18,8 +18,8 @@ net_name = MSNet32
 base_feature_number = [32, 32, 32, 32]
 acti_func = prelu
 downsample_twice = True
-data_shape = [39, 144, 144]
-label_shape = [31, 144, 144]
+data_shape = [49, 160, 144]
+label_shape = [41, 160, 144]
 # equal to length of modality_postfix
 data_channel = 4 
 class_num = 4
@@ -30,7 +30,7 @@ decay = 1e-9
 
 [testing]
 test_slice_direction = axial
-model_file = /home/guotwang/tf_project/tf_brats/model/msnet32_1000.ckpt
-save_folder = results/highres3dnet/valid0_1
+model_file = /home/guotwang/tf_project/tf_brats/model/msnet32_20000.ckpt
+save_folder = results/msnet_axial/valid0_1
 label_convert_source = [0, 1, 2, 3]
 label_convert_target = [0, 1, 2, 4]
