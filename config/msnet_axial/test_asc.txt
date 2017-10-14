@@ -23,7 +23,7 @@ label_shape = [41, 160, 144]
 # equal to length of modality_postfix
 data_channel = 4 
 class_num = 4
-model_file = model/msnet_wt32_20000.ckpt
+model_file = model/msnet32_20000.ckpt
 
 [network1sg]
 net_type = MSNet
@@ -36,7 +36,7 @@ label_shape = [41, 144, 160]
 # equal to length of modality_postfix
 data_channel = 4 
 class_num = 4
-model_file = model/msnet_wt32sg_20000.ckpt
+model_file = model/msnet32sg_20000.ckpt
 
 
 [network1cr]
@@ -50,7 +50,7 @@ label_shape = [41, 144, 144]
 # equal to length of modality_postfix
 data_channel = 4 
 class_num = 4
-model_file = model/msnet_wt32cr_20000.ckpt
+model_file = model/msnet32cr_20000.ckpt
 
 [network2]
 net_type = MSNet
