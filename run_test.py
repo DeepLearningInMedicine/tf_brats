@@ -472,12 +472,12 @@ def run(config_file):
         prob1 = test_one_image_three_nets_adaptive_shape(temp_imgs, data_shapes, label_shapes, data_channel, class_num,
                    batch_size, sess, nets, outputs, inputs, shape_mode = 0)
         pred1 =  np.asarray(np.argmax(prob1, axis = 3), np.uint16)
-        final_label = pred1 * temp_weight
+        out_label = pred1 * temp_weight
         label_convert_source = config_test.get('label_convert_source', None)
         label_convert_target = config_test.get('label_convert_target', None)
         if(label_convert_source and label_convert_target):
             assert(len(label_convert_source) == len(label_convert_target))
-            final_label = convert_label(final_label, label_convert_source, label_convert_target)
+            out_label = convert_label(out_label, label_convert_source, label_convert_target)
 #        # test of 2nd network
 #        wt_threshold = 2000
 #        if(pred1.sum() == 0):
@@ -583,9 +583,9 @@ def run(config_file):
 #        out_label[label3>0] = 4
 #        out_label = np.asarray(out_label, np.int16)
 #
-#        test_time.append(time.time() - t0)
-#        final_label = np.zeros_like(weight, np.int16)
-#        final_label[np.ix_(range(groi[0], groi[1]), range(groi[2], groi[3]), range(groi[4], groi[5]))] = out_label
+        test_time.append(time.time() - t0)
+        final_label = np.zeros_like(weight, np.int16)
+        final_label[np.ix_(range(groi[0], groi[1]), range(groi[2], groi[3]), range(groi[4], groi[5]))] = out_label
 
         save_array_as_nifty_volume(final_label, save_folder+"/{0:}.nii.gz".format(temp_name))
         print(temp_name, flush = True)
