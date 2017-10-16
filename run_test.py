@@ -472,117 +472,119 @@ def run(config_file):
         prob1 = test_one_image_three_nets_adaptive_shape(temp_imgs, data_shapes, label_shapes, data_channel, class_num,
                    batch_size, sess, nets, outputs, inputs, shape_mode = 0)
         pred1 =  np.asarray(np.argmax(prob1, axis = 3), np.uint16)
-        out_label = pred1 * temp_weight
-        label_convert_source = config_test.get('label_convert_source', None)
-        label_convert_target = config_test.get('label_convert_target', None)
-        if(label_convert_source and label_convert_target):
-            assert(len(label_convert_source) == len(label_convert_target))
-            out_label = convert_label(out_label, label_convert_source, label_convert_target)
-#        # test of 2nd network
-#        wt_threshold = 2000
-#        if(pred1.sum() == 0):
-#            print('net1 output is null', temp_name)
-#            roi2 = get_roi(temp_imgs[0] > 0, margin)
-#        else:
-#            pred1_lc = ndimage.morphology.binary_closing(pred1, structure = struct)
-#            pred1_lc = get_largest_two_component(pred1_lc, True, wt_threshold)
-#            roi2 = get_roi(pred1_lc, margin)
-#        sub_imgs = [x[np.ix_(range(roi2[0], roi2[1]), range(roi2[2], roi2[3]), range(roi2[4], roi2[5]))] \
-#                      for x in temp_imgs]
-#        sub_weight = temp_weight[np.ix_(range(roi2[0], roi2[1]), range(roi2[2], roi2[3]), range(roi2[4], roi2[5]))]
-#        if(config_net2):
-#            data_shapes = [data_shape2, data_shape2, data_shape2]
-#            label_shapes = [label_shape2, label_shape2, label_shape2]
-#            nets = [net2, net2, net2]
-#            outputs = [proby2, proby2, proby2]
-#            inputs =  [x2, x2, x2]
-#            data_channel = data_channel2
-#            class_num = class_num2
-#        else:
-#            data_shapes = [data_shape2ax, data_shape2sg, data_shape2cr]
-#            label_shapes = [label_shape2ax, label_shape2sg, label_shape2cr]
-#            nets = [net2ax, net2sg, net2cr]
-#            outputs = [proby2ax, proby2sg, proby2cr]
-#            inputs =  [x2ax, x2sg, x2cr]
-#            data_channel = data_channel2ax
-#            class_num = class_num2ax
-#        prob2 = test_one_image_three_nets_adaptive_shape(sub_imgs, data_shapes, label_shapes, data_channel, class_num,  1, sess, nets, outputs, inputs, shape_mode = 2)
-#        pred2 = np.asarray(np.argmax(prob2, axis = 3), np.uint16)
-#        pred2 = pred2 * sub_weight
-#         
-#        # test of 3rd network
-#        if(pred2.sum() == 0):
-#            [roid, roih, roiw] = sub_imgs[0].shape
-#            roi3 = [0, roid, 0, roih, 0, roiw]
-#            subsub_imgs = sub_imgs
-#            subsub_weight = sub_weight
-#        else:
-#            pred2_lc = ndimage.morphology.binary_closing(pred2, structure = struct)
-#            pred2_lc = get_largest_two_component(pred2_lc)
-#            roi3 = get_roi(pred2_lc, margin)
-#            subsub_imgs = [x[np.ix_(range(roi3[0], roi3[1]), range(roi3[2], roi3[3]), range(roi3[4], roi3[5]))] \
-#                      for x in sub_imgs]
-#            subsub_weight = sub_weight[np.ix_(range(roi3[0], roi3[1]), range(roi3[2], roi3[3]), range(roi3[4], roi3[5]))] 
-#        
-#        if(config_net3):
-#            data_shapes = [data_shape3, data_shape3, data_shape3]
-#            label_shapes = [label_shape3, label_shape3, label_shape3]
-#            nets = [net3, net3, net3]
-#            outputs = [proby3, proby3, proby3]
-#            inputs =  [x3, x3, x3]
-#            data_channel = data_channel3
-#            class_num = class_num3
-#        else:
-#            data_shapes = [data_shape3ax, data_shape3sg, data_shape3cr]
-#            label_shapes = [label_shape3ax, label_shape3sg, label_shape3cr]
-#            nets = [net3ax, net3sg, net3cr]
-#            outputs = [proby3ax, proby3sg, proby3cr]
-#            inputs =  [x3ax, x3sg, x3cr]
-#            data_channel = data_channel3ax
-#            class_num = class_num3ax
-#        prob3 = test_one_image_three_nets_adaptive_shape(subsub_imgs, data_shapes, label_shapes, data_channel, class_num,
-#                   batch_size, sess, nets, outputs, inputs, shape_mode = 1)
-#        
-#        pred3 = np.asarray(np.argmax(prob3, axis = 3), np.uint16)
-#        pred3 = pred3 * subsub_weight
-#         
-#        # fuse results at 3 levels
-#        # convert subsub_label to full size (non-enhanced)
-#        label3_roi = np.zeros_like(pred2)
-#        label3_roi[np.ix_(range(roi3[0], roi3[1]), range(roi3[2], roi3[3]), range(roi3[4], roi3[5]))] = pred3
-#        label3 = np.zeros_like(pred1)
-#        label3[np.ix_(range(roi2[0], roi2[1]), range(roi2[2], roi2[3]), range(roi2[4], roi2[5]))] = label3_roi
-#
-#        # convert sub_label to full size (tumor core)
-#        label2 = np.zeros_like(pred1)
-#        label2[np.ix_(range(roi2[0], roi2[1]), range(roi2[2], roi2[3]), range(roi2[4], roi2[5]))] = pred2
-#
-#        
-#        # fuse the results
-#        label1_mask = (pred1 + label2 + label3) > 0
-#        label1_mask = ndimage.morphology.binary_closing(label1_mask, structure = struct)
-#        label1_mask = get_largest_two_component(label1_mask, False, wt_threshold)
-#        label1 = pred1 * label1_mask
-#        
-#        label2_3_mask = (label2 + label3) > 0
-#        label2_3_mask = label2_3_mask * label1_mask
-#        label2_3_mask = ndimage.morphology.binary_closing(label2_3_mask, structure = struct)
-#        label2_3_mask = remove_external_core(label1, label2_3_mask)
-#        if(label2_3_mask.sum() > 0):
-#            label2_3_mask = get_largest_two_component(label2_3_mask)
-#        label1 = (label1 + label2_3_mask) > 0
-#        label2 = label2_3_mask
-#        label3 = label2 * label3
-#        vox_3  = label3.sum() 
-#        if(0 < vox_3 and vox_3 < 30):
-#            print('ignored voxel number ', vox_3, flush = True)
-#            label3 = np.zeros_like(label2)
-#            
-#        out_label = label1 * 2 
-#        out_label[label2>0] = 1
-#        out_label[label3>0] = 4
-#        out_label = np.asarray(out_label, np.int16)
-#
+        pred1 = pred1 * temp_weight
+
+#        out_label = pred1 * temp_weight
+#        label_convert_source = config_test.get('label_convert_source', None)
+#        label_convert_target = config_test.get('label_convert_target', None)
+#        if(label_convert_source and label_convert_target):
+#            assert(len(label_convert_source) == len(label_convert_target))
+#            out_label = convert_label(out_label, label_convert_source, label_convert_target)
+        # test of 2nd network
+        wt_threshold = 2000
+        if(pred1.sum() == 0):
+            print('net1 output is null', temp_name)
+            roi2 = get_roi(temp_imgs[0] > 0, margin)
+        else:
+            pred1_lc = ndimage.morphology.binary_closing(pred1, structure = struct)
+            pred1_lc = get_largest_two_component(pred1_lc, True, wt_threshold)
+            roi2 = get_roi(pred1_lc, margin)
+        sub_imgs = [x[np.ix_(range(roi2[0], roi2[1]), range(roi2[2], roi2[3]), range(roi2[4], roi2[5]))] \
+                      for x in temp_imgs]
+        sub_weight = temp_weight[np.ix_(range(roi2[0], roi2[1]), range(roi2[2], roi2[3]), range(roi2[4], roi2[5]))]
+        if(config_net2):
+            data_shapes = [data_shape2, data_shape2, data_shape2]
+            label_shapes = [label_shape2, label_shape2, label_shape2]
+            nets = [net2, net2, net2]
+            outputs = [proby2, proby2, proby2]
+            inputs =  [x2, x2, x2]
+            data_channel = data_channel2
+            class_num = class_num2
+        else:
+            data_shapes = [data_shape2ax, data_shape2sg, data_shape2cr]
+            label_shapes = [label_shape2ax, label_shape2sg, label_shape2cr]
+            nets = [net2ax, net2sg, net2cr]
+            outputs = [proby2ax, proby2sg, proby2cr]
+            inputs =  [x2ax, x2sg, x2cr]
+            data_channel = data_channel2ax
+            class_num = class_num2ax
+        prob2 = test_one_image_three_nets_adaptive_shape(sub_imgs, data_shapes, label_shapes, data_channel, class_num,  1, sess, nets, outputs, inputs, shape_mode = 2)
+        pred2 = np.asarray(np.argmax(prob2, axis = 3), np.uint16)
+        pred2 = pred2 * sub_weight
+         
+        # test of 3rd network
+        if(pred2.sum() == 0):
+            [roid, roih, roiw] = sub_imgs[0].shape
+            roi3 = [0, roid, 0, roih, 0, roiw]
+            subsub_imgs = sub_imgs
+            subsub_weight = sub_weight
+        else:
+            pred2_lc = ndimage.morphology.binary_closing(pred2, structure = struct)
+            pred2_lc = get_largest_two_component(pred2_lc)
+            roi3 = get_roi(pred2_lc, margin)
+            subsub_imgs = [x[np.ix_(range(roi3[0], roi3[1]), range(roi3[2], roi3[3]), range(roi3[4], roi3[5]))] \
+                      for x in sub_imgs]
+            subsub_weight = sub_weight[np.ix_(range(roi3[0], roi3[1]), range(roi3[2], roi3[3]), range(roi3[4], roi3[5]))] 
+        
+        if(config_net3):
+            data_shapes = [data_shape3, data_shape3, data_shape3]
+            label_shapes = [label_shape3, label_shape3, label_shape3]
+            nets = [net3, net3, net3]
+            outputs = [proby3, proby3, proby3]
+            inputs =  [x3, x3, x3]
+            data_channel = data_channel3
+            class_num = class_num3
+        else:
+            data_shapes = [data_shape3ax, data_shape3sg, data_shape3cr]
+            label_shapes = [label_shape3ax, label_shape3sg, label_shape3cr]
+            nets = [net3ax, net3sg, net3cr]
+            outputs = [proby3ax, proby3sg, proby3cr]
+            inputs =  [x3ax, x3sg, x3cr]
+            data_channel = data_channel3ax
+            class_num = class_num3ax
+        prob3 = test_one_image_three_nets_adaptive_shape(subsub_imgs, data_shapes, label_shapes, data_channel, class_num,
+                   batch_size, sess, nets, outputs, inputs, shape_mode = 1)
+        
+        pred3 = np.asarray(np.argmax(prob3, axis = 3), np.uint16)
+        pred3 = pred3 * subsub_weight
+         
+        # fuse results at 3 levels
+        # convert subsub_label to full size (non-enhanced)
+        label3_roi = np.zeros_like(pred2)
+        label3_roi[np.ix_(range(roi3[0], roi3[1]), range(roi3[2], roi3[3]), range(roi3[4], roi3[5]))] = pred3
+        label3 = np.zeros_like(pred1)
+        label3[np.ix_(range(roi2[0], roi2[1]), range(roi2[2], roi2[3]), range(roi2[4], roi2[5]))] = label3_roi
+
+        # convert sub_label to full size (tumor core)
+        label2 = np.zeros_like(pred1)
+        label2[np.ix_(range(roi2[0], roi2[1]), range(roi2[2], roi2[3]), range(roi2[4], roi2[5]))] = pred2
+
+        
+        # fuse the results
+        label1_mask = (pred1 + label2 + label3) > 0
+        label1_mask = ndimage.morphology.binary_closing(label1_mask, structure = struct)
+        label1_mask = get_largest_two_component(label1_mask, False, wt_threshold)
+        label1 = pred1 * label1_mask
+        
+        label2_3_mask = (label2 + label3) > 0
+        label2_3_mask = label2_3_mask * label1_mask
+        label2_3_mask = ndimage.morphology.binary_closing(label2_3_mask, structure = struct)
+        label2_3_mask = remove_external_core(label1, label2_3_mask)
+        if(label2_3_mask.sum() > 0):
+            label2_3_mask = get_largest_two_component(label2_3_mask)
+        label1 = (label1 + label2_3_mask) > 0
+        label2 = label2_3_mask
+        label3 = label2 * label3
+        vox_3  = label3.sum() 
+        if(0 < vox_3 and vox_3 < 30):
+            print('ignored voxel number ', vox_3, flush = True)
+            label3 = np.zeros_like(label2)
+            
+        out_label = label1 * 2 
+        out_label[label2>0] = 1
+        out_label[label3>0] = 4
+        out_label = np.asarray(out_label, np.int16)
+
         test_time.append(time.time() - t0)
         final_label = np.zeros_like(weight, np.int16)
         final_label[np.ix_(range(groi[0], groi[1]), range(groi[2], groi[3]), range(groi[4], groi[5]))] = out_label
