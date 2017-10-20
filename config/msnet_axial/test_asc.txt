@@ -9,7 +9,7 @@ file_post_fix = nii.gz
 data_names = 
 # only data_num images loaded, all images if data_num is None
 data_num = 
-batch_size = 1
+batch_size = 2
 
 
 [network1ax]
