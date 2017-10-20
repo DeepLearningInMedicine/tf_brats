@@ -508,7 +508,7 @@ def run(config_file):
             inputs =  [x2ax, x2sg, x2cr]
             data_channel = data_channel2ax
             class_num = class_num2ax
-        prob2 = test_one_image_three_nets_adaptive_shape(sub_imgs, data_shapes, label_shapes, data_channel, class_num,  1, sess, nets, outputs, inputs, shape_mode = 2)
+        prob2 = test_one_image_three_nets_adaptive_shape(sub_imgs, data_shapes, label_shapes, data_channel, class_num,  batch_size, sess, nets, outputs, inputs, shape_mode = 2)
         pred2 = np.asarray(np.argmax(prob2, axis = 3), np.uint16)
         pred2 = pred2 * sub_weight
          
