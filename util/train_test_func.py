@@ -223,7 +223,7 @@ def volume_probability_prediction_dynamic_3dshape(temp_imgs, data_shape, label_s
     Wx = max(int((W+3)/4)*4, data_shape[2])
     data_slice = data_shape[0]
     label_slice = label_shape[0]
-    full_data_shape = [batch_size, data_slice - label_slice + D, Hx, Wx, data_channel]
+    full_data_shape = [1, data_slice - label_slice + D, Hx, Wx, data_channel]
     x = tf.placeholder(tf.float32, full_data_shape)
     predicty = net(x, is_training = True)
     proby = tf.nn.softmax(predicty)
