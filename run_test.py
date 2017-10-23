@@ -8,7 +8,7 @@ import os
 import sys
 from data_io.data_loader import *
 from run_train import NetFactory
-from util.train_test_func import test_one_image_three_nets, test_one_image_three_nets_adaptive_shape
+from util.train_test_func import *
 from util.parse_config import parse_config
 import pickle
 
@@ -508,7 +508,8 @@ def run(config_file):
             inputs =  [x2ax, x2sg, x2cr]
             data_channel = data_channel2ax
             class_num = class_num2ax
-        prob2 = test_one_image_three_nets_adaptive_shape(sub_imgs, data_shapes, label_shapes, data_channel, class_num,  batch_size, sess, nets, outputs, inputs, shape_mode = 1)
+        prob2 = test_one_image_three_nets_adaptive_3dshape(sub_imgs, data_shapes, label_shapes, data_channel, class_num, sess, nets, outputs, inputs)
+#        prob2 = test_one_image_three_nets_adaptive_shape(sub_imgs, data_shapes, label_shapes, data_channel, class_num,  batch_size, sess, nets, outputs, inputs, shape_mode = 1)
         pred2 = np.asarray(np.argmax(prob2, axis = 3), np.uint16)
         pred2 = pred2 * sub_weight
          

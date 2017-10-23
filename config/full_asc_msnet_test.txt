@@ -61,7 +61,7 @@ label_shape = [11,120, 120]
 # equal to length of modality_postfix
 data_channel = 4
 class_num = 2
-model_file = model/msnet_tc32_20000.ckpt
+model_file = model/msnet_tc32_30000.ckpt
 
 [network2sg]
 net_type = MSNet
@@ -74,7 +74,7 @@ label_shape = [11,120, 120]
 # equal to length of modality_postfix
 data_channel = 4
 class_num = 2
-model_file = model/msnet_tc32sg_20000cp.ckpt
+model_file = model/msnet_tc32sg_30000cp.ckpt
 
 [network2cr]
 net_type = MSNet
@@ -87,7 +87,7 @@ label_shape = [11, 120, 120]
 # equal to length of modality_postfix
 data_channel = 4
 class_num = 2
-model_file = model/msnet_tc32cr_20000cp.ckpt
+model_file = model/msnet_tc32cr_30000cp.ckpt
 
 [network3ax]
 net_type = MSNet
@@ -130,4 +130,4 @@ model_file = model/msnet_en32cr_20000.ckpt
 
 [testing]
 test_slice_direction = all
-save_folder = results/valid0_1
+save_folder = results/valid1_6
